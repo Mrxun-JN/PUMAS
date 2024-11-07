@@ -1,6 +1,6 @@
 module tau_neural_net_quantile
 
-    use shr_kind_mod,   only: r8=>shr_kind_r8
+    use pumas_kinds,       only : r8=>kind_r8
 
     use module_neural_net, only : Dense, init_neural_net, load_quantile_scale_values
     use module_neural_net, only : quantile_transform, quantile_inv_transform, neural_net_predict

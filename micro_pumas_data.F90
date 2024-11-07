@@ -51,7 +51,7 @@ module micro_pumas_data
 ! builds.
 #include "shr_assert.h"
 
-use shr_kind_mod, only: r8 => shr_kind_r8
+use pumas_kinds, only: r8 => shr_kind_r8
 use shr_log_mod, only: &
      errMsg => shr_log_errMsg, &
      OOBMsg => shr_log_OOBMsg

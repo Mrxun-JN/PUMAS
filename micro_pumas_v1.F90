@@ -95,8 +95,10 @@ module micro_pumas_v1
 ! 2) saturation vapor pressure and specific humidity over water
 ! 3) svp over ice
 
+use pumas_kinds, only: r8
+
 #ifndef HAVE_GAMMA_INTRINSICS
-use shr_spfn_mod, only: gamma => shr_spfn_gamma
+use pumas_gamma_function, only: gamma=>pumas_gamma
 #endif
 
 use wv_sat_methods, only: &
@@ -105,7 +107,6 @@ use wv_sat_methods, only: &
 
 ! Parameters from the utilities module.
 use micro_pumas_utils, only: &
-     r8, &
      pi, &
      omsm, &
      qsmall, &
