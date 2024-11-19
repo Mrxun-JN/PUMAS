@@ -340,9 +340,9 @@ subroutine micro_pumas_init( &
      stochastic_emulated_filename_output_scale, &
      iulog, errstring)
 
-  use micro_pumas_utils, only: micro_pumas_utils_init
+  use micro_pumas_utils,            only: micro_pumas_utils_init
   use pumas_stochastic_collect_tau, only: pumas_stochastic_kernel_init
-  use tau_neural_net_quantile, only:  initialize_tau_emulators
+  use tau_neural_net_quantile,      only: initialize_tau_emulators
 
   !-----------------------------------------------------------------------
   !
@@ -426,18 +426,22 @@ subroutine micro_pumas_init( &
                                   stochastic_emulated_filename_input_scale, &
                                   stochastic_emulated_filename_output_scale ! Files for emulated machine learning
 
-  integer, intent(in) :: iulog
+  integer, intent(in) :: iulog                ! Host model log file unit number
   character(128), intent(out) :: errstring    ! Output status (non-blank for error return)
 
   !-----------------------------------------------------------------------
 
+  ! Initialize ice autoconversion size
+  ! to host-model specified value:
   dcs = micro_mg_dcs
 
   ! Initialize subordinate utilities module.
   call micro_pumas_utils_init(kind, rair, rh2o, cpair, tmelt_in, latvap, latice, &
        dcs, errstring)
 
-  if (trim(errstring) /= "") return
+  if (trim(errstring) /= "") then !If True then error occured
+     return
+  end if
 
   ! declarations for MG code (transforms variable names)
 
@@ -615,9 +619,8 @@ subroutine micro_pumas_tend ( &
      frzimm,             frzcnt,             frzdep)
 
   use pumas_stochastic_collect_tau, only: ncd, pumas_stochastic_collect_tau_tend
-  use tau_neural_net_quantile, only: tau_emulated_cloud_rain_interactions
-  use cam_logfile,    only: iulog
-  use ML_fixer_check, only: ML_fixer_calc
+  use tau_neural_net_quantile,      only: tau_emulated_cloud_rain_interactions
+  use ML_fixer_check,               only: ML_fixer_calc
 
   ! Constituent properties.
   use micro_pumas_utils, only: &

@@ -99,8 +99,6 @@ end subroutine calc_bins
 
 subroutine pumas_stochastic_kernel_init(kernel_filename)
 
-  use cam_history_support, only: add_hist_coord
-
   character(len=*), intent(in) :: kernel_filename  ! Full pathname to kernel file
 
   integer :: iunit ! unit number of opened file for collection kernel code from a lookup table.
