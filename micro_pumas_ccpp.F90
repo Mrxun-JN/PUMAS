@@ -163,7 +163,7 @@ contains
   micro_mg_iaccr_factor     = real(micro_mg_iaccr_factor_in, pumas_r8)
   micro_mg_max_nicons       = real(micro_mg_max_nicons_in, pumas_r8)
 
-  !Call PUMAS initialization routine
+  !Call PUMAS initialization routine:
   call micro_pumas_init( &
            pumas_r8, gravit, rair, rh2o, cpair, &
            tmelt, latvap, latice, rhmini, &
@@ -195,7 +195,146 @@ contains
 
   !> \section arg_table_micro_pumas_ccpp_run Argument Table
   !! \htmlinclude micro_pumas_ccpp_run.html
-  subroutine micro_pumas_ccpp_run()
+  subroutine micro_pumas_ccpp_run(micro_ncol, micro_nlev, micro_timestep,           &
+                                  micro_airT_in, micro_airq_in, micro_cldliq_in,    &
+                                  micro_cldice_in, micro_numliq_in,                 &
+                                  micro_numeice_in, micro_rainliq_in,               &
+                                  micro_snowice_in, micro_numrain_in,               &
+                                  micro_graupice_in, micro_numgraup_in,             &
+                                  micro_numsnow_in, micro_relvar_in,                &
+                                  micro_accre_enhan_in, micro_pmid_in,              &
+                                  micro_pdel_in, micro_pint_in,                     &
+                                  micro_strat_cldfrc_in, micro_strat_liq_cldfrc_in, &
+                                  micro_strat_ice_cldfrc_in, micro_qsatfac_in,      &
+                                  micro_naai_in, micro_npccn_in,                    &
+                                  micro_rndst_in, micro_nacon_in,                   &
+                                  micro_qcsinksum_rate1ord_out, &
+                                  errmsg, errcode)
+
+    !Subroutine (dummy) input arguments:
+
+    !Host model dimensions/parameters:
+    integer,         intent(in) :: micro_ncol         !Number of horizontal microphysics columns (count)
+    integer,         intent(in) :: micro_nlev         !Number of microphysics vertical layers (count)
+    real(kind_phys), intent(in) :: micro_timestep     !Microphysics time step (s)
+
+    !Host model state variables:
+
+    !Microphysics Air temperature (K) of new state
+    real(kind_phys), intent(in) :: micro_airT_in(micro_ncol, micro_nlev)
+    !Microphysics Water vapor mixing ratio wrt moist air and condensed water of new state (kg kg-1)
+    real(kind_phys), intent(in) :: micro_airq_in(micro_ncol, micro_nlev)
+    !Microphysics cloud liquid water mixing ratio wrt moist air and condensed water of new state (kg kg-1)
+    real(kind_phys), intent(in) :: micro_cldliq_in(micro_ncol, micro_nlev)
+    !Microphysics cloud ice mixing ratio wrt moist air and condensed water of new state (kg kg-1)
+    real(kind_phys), intent(in) :: micro_cldice_in(micro_ncol, micro_nlev)
+    !microphysics mass number concentration of cloud liquid water wrt moist air and condensed water of new state (kg-1)
+    real(kind_phys), intent(in) :: micro_numliq_in(micro_ncol, micro_nlev)
+    !microphysics mass number concentration of cloud ice wrt moist air and condensed water of new state (kg-1)
+    real(kind_phys), intent(in) :: micro_numice_in(micro_ncol, micro_nlev)
+    !microphysics rain mixing ratio wrt moist air and condensed water of new state (kg kg-1)
+    real(kind_phys), intent(in) :: micro_rainliq_in(micro_ncol, micro_nlev)
+    !microphysics snow mixing ratio wrt moist air and condensed water of new state (kg kg-1)
+    real(kind_phys), intent(in) :: micro_snowice_in(micro_ncol, micro_nlev)
+    !microphysics mass number concentration of rain wrt moist air and condensed water of new state (kg-1)
+    real(kind_phys), intent(in) :: micro_numrain_in(micro_ncol, micro_nlev)
+    !microphysics mass number concentration of snow wrt moist air and condensed water of new state (kg-1)
+    real(kind_phys), intent(in) :: micro_numsnow_in(micro_ncol, micro_nlev)
+    !microphysics graupel mixing ratio wrt moist air and condensed water of new state (kg kg-1)
+    real(kind_phys), intent(in) :: micro_graupice_in(micro_ncol, micro_nlev)
+    !microphysics mass number concentration of graupel wrt moist air and condensed water of new state (kg-1)
+    real(kind_phys), intent(in) :: micro_numgraup_in(micro_ncol, micro_nlev)
+    !microphysics relative variance of cloud water (1)
+    real(kind_phys), intent(in) :: micro_relvar_in(micro_ncol, micro_nlev)
+    !microphysics accretion enhancement factor (1)
+    real(kind_phys), intent(in) :: micro_accre_enhan_in(micro_ncol, micro_nlev)
+    !microphysics air pressure (Pa)
+    real(kind_phys), intent(in) :: micro_pmid_in(micro_ncol, micro_nlev)
+    !microphysics air pressure thickness (Pa)
+    real(kind_phys), intent(in) :: micro_pdel_in(micro_ncol, micro_nlev)
+    !microphysics air pressure at interfaces (Pa)
+    real(kind_phys), intent(in) :: micro_pint_in(micro_ncol, micro_nlev)
+    !microphysics stratiform cloud area fraction (fraction)
+    real(kind_phys), intent(in) :: micro_strat_cldfrc_in(micro_ncol, micro_nlev)
+    !microphysics stratiform cloud liquid area fraction (fraction)
+    real(kind_phys), intent(in) :: micro_strat_liq_cldfrc_in(micro_ncol, micro_nlev)
+    !microphysics stratiform cloud ice area fraction (fraction)
+    real(kind_phys), intent(in) :: micro_strat_ice_cldfrc_in(micro_ncol, micro_nlev)
+    !microphysics subgrid cloud water saturation scaling factor (1)
+    real(kind_phys), intent(in) :: micro_qsatfac_in(micro_ncol, micro_nlev)
+    !microphysics tendency of activated ice nuclei mass number concentration (kg-1 s-1)
+    real(kind_phys), intent(in) :: micro_naai_in(micro_ncol, micro_nlev)
+    !microphysics tendency of activated cloud condensation nuclei mass number concentration (kg-1 s-1)
+    real(kind_phys), intent(in) :: micro_npccn_in(micro_ncol, micro_nlev)
+    !microphysics dust radii by size bin  (m)
+    real(kind_phys), intent(in) :: micro_rndst_in(micro_ncol, micro_nlev, :)
+    !microphysics dust number concentration by size bin (m-3)
+    real(kind_phys), intent(in) :: micro_nacon_in(micro_ncol, micro_nlev, :)
+
+    !Subroutine output arguments:
+
+    !microphysics direct conversion rate of stratiform cloud water to precipitation (s-1)
+    real(kind_phys), intent(out) :: micro_qcsinksum_rate1ord_out(micro_ncol, micro_nlev)
+
+    character(len=512), intent(out) :: errmsg  !PUMAS/CCPP error message (none)
+    integer,            intent(out) :: errcode !CCPP error code (1)
+
+    !Initialize error code:
+    errcode = 0
+
+    !Call main PUMAS run routine:
+    subroutine micro_pumas_tend ( &
+     micro_ncol,             micro_nlev,     micro_timestep,  &
+     airT,                   airq,                            &
+     cldliq,                 cldice,                          &
+     numliq,                 numice,                          &
+     rainliq,                snowice,                         &
+     numrain,                numsnow,                         &
+     graupice,               numgraup,                        &
+     relvar,                 accre_enhan,                     &
+     pmid,                   pdel, pint,                      &
+     strat_cldfrc,           strat_liq_cldfrc,                &
+     strat_ice_cldfrc,       qsatfac,                         &
+     qcsinksum_rate1ord,                                         &
+     naai,                         npccn,                        &
+     rndst,                        nacon,                        &
+     !CONTINUE HERE!!!!!!!!
+     tlat,                         qvlat,                        &
+     qctend,                       qitend,                       &
+     nctend,                       nitend,                       &
+     qrtend,                       qstend,                       &
+     nrtend,                       nstend,                       &
+     qgtend,                       ngtend,                       &
+     effc,               effc_fn,            effi,               &
+     sadice,                       sadsnow,                      &
+     prect,                        preci,                        &
+     nevapr,                       am_evp_st,                    &
+     prain,                                                      &
+     cmeout,                       deffi,                        &
+     pgamrad,                      lamcrad,                      &
+     qsout,                        dsout,                        &
+     qgout,     ngout,             dgout,                        &
+     lflx,               iflx,                                   &
+     gflx,                                                       &
+     rflx,               sflx,               qrout,              &
+     reff_rain,          reff_snow,          reff_grau,          &
+     nrout,                        nsout,                        &
+     refl,               arefl,              areflz,             &
+     frefl,              csrfl,              acsrfl,             &
+     fcsrfl,        refl10cm, reflz10cm,     rercld,             &
+     ncai,                         ncal,                         &
+     qrout2,                       qsout2,                       &
+     nrout2,                       nsout2,                       &
+     drout2,                       dsout2,                       &
+     qgout2,        ngout2,        dgout2,    freqg,                   &
+     freqs,                        freqr,                        &
+     nfice,                        qcrat,                        &
+     proc_rates,                                                 &
+     errmsg, & ! Below arguments are "optional" (pass null pointers to omit).
+     tnd_qsnow,          tnd_nsnow,          re_ice,             &
+     prer_evap,                                                      &
+     frzimm,             frzcnt,             frzdep)
+
   end subroutine micro_pumas_ccpp_run
 
 end module micro_pumas_ccpp
