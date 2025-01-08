@@ -453,6 +453,13 @@
   dimensions = ()
   type = integer
   intent = in
+[micro_dust_nbins]
+  standard_name = dust_size_bins_dimension
+  long_name = number of dust particle size bins
+  units = count
+  dimensions = ()
+  type = integer
+  intent = in
 [micro_timestep_in]
   standard_name = timestep_for_microphysics
   long_name = microphysics time step
@@ -949,7 +956,7 @@
   type = real
   kind = kind_phys
   intent = out
-[numgraup_vol_in_prec_out]
+[micro_numgraup_vol_in_prec_out]
   standard_name = microphysics_graupel_number_concentration_of_new_state_in_precipitating_fraction_of_gridcell
   long_name = microphysics graupel number concentration of new state in precipitating fraction of gridcell
   units = m-3
