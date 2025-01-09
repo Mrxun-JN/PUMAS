@@ -8,8 +8,8 @@
   dependencies = pumas_stochastic_collect_tau.F90,tau_neural_net_quantile.F90
   dependencies = module_neural_net.F90,ML_fixer_check.F90
 
-  #Need to figure out plan for water vapor saturation code:
-  dependencies = wv_saturation.F
+  #External dependencies:
+  dependencies = ../../../tools/wv_sat_methods.F90 #Lives in NCAR/ccpp-physics
 
 ########################################################################
 [ccpp-arg-table]
