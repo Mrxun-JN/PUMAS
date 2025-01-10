@@ -38,7 +38,7 @@ module micro_pumas_utils
 use pumas_kinds, only: r8=>kind_r8, i8=>kind_i8
 
 #ifndef HAVE_GAMMA_INTRINSICS
-use pumas_gamma_function, only: gamma => pumas_gamma
+use pumas_gamma_function, only: gamma=>pumas_gamma
 #endif
 
 implicit none

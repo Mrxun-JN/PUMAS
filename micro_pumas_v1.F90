@@ -95,7 +95,7 @@ module micro_pumas_v1
 ! 2) saturation vapor pressure and specific humidity over water
 ! 3) svp over ice
 
-use pumas_kinds, only: r8
+use pumas_kinds, only: r8=>kind_r8
 
 #ifndef HAVE_GAMMA_INTRINSICS
 use pumas_gamma_function, only: gamma=>pumas_gamma

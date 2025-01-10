@@ -35,7 +35,7 @@ module pumas_gamma_function
   ! Note also that this gamma function is only for double precision. We
   ! haven't needed an r4 version yet.
 
-  public :: shr_spfn_gamma
+  public :: pumas_gamma
 
   interface pumas_gamma
      module procedure pumas_gamma_r8
