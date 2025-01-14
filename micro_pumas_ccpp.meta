@@ -74,7 +74,7 @@
   type = real
   kind = kind_phys
   intent = in
-[rhmini_in]
+[rhmini]
   standard_name = relative_humidity_threshold_for_ice_nucleation
   long_name = relative humidity threshold parameter for nucleating ice for MG microphysics
   units = frac
@@ -117,7 +117,7 @@
   dimensions = ()
   type = logical
   intent = in
-[hetfrz_classnuc]
+[use_hetfrz_classnuc]
   standard_name = flag_for_heterogeneous_ice_nucleation
   long_name = flag for heterogeneous freezing for MG microphysics
   units = flag
@@ -244,7 +244,7 @@
   type = character
   kind = len=*
   intent = in
-[mg_warm_rain_method]
+[micro_mg_warm_rain]
   standard_name = control_for_warm_rain_method
   long_name = warm rain method (KK2000,sb2001,tau,emulated)
   units = none
@@ -430,23 +430,26 @@
 
 ########################################################################
 [ccpp-arg-table]
-  name = micro_pumas_tend
+  name = micro_pumas_ccpp_run
   type = scheme
-[micro_ncol] #Equivalent to "horizontal_loop_extent" unless subcolumns is enabled
+[micro_ncol]
+  #Equivalent to "horizontal_loop_extent" unless subcolumns is enabled
   standard_name = microphysics_horizontal_loop_extent
   long_name = number of horizontal columns used by microphysics
   units = count
   dimensions = ()
   type = integer
   intent = in
-[micro_nlev] #Vertical levels from surface to highest level with tropospheric clouds
+[micro_nlev]
+  #Vertical levels from surface to highest level with tropospheric clouds
   standard_name = microphysics_vertical_layer_dimension
   long_name = vertical layer dimension used by microphysics
   units = count
   dimensions = ()
   type = integer
   intent = in
-[micro_nlevp1] #Vertical interfaces from surface to highest level with tropospheric clouds
+[micro_nlevp1]
+  #Vertical interfaces from surface to highest level with tropospheric clouds
   standard_name = microphysics_vertical_interface_dimension
   long_name = vertical interface dimension used by microphysics
   units = count
@@ -541,8 +544,8 @@
   kind = kind_phys
   intent = in
 [micro_numsnow_in]
-  standard_name = microphysics_mass_number_concentration_of_rain_wrt_moist_air_and_condensed_water
-  long_name = microphysics mass number concentration of rain wrt moist air and condensed water of new state
+  standard_name = microphysics_mass_number_concentration_of_snow_wrt_moist_air_and_condensed_water
+  long_name = microphysics mass number concentration of snow wrt moist air and condensed water of new state
   units = kg-1
   dimensions = (microphysics_horizontal_loop_extent, microphysics_vertical_layer_dimension)
   type = real
@@ -797,8 +800,8 @@
   kind = kind_phys
   intent = out
 [micro_numsnow_tend_out]
-  standard_name = microphysics_tendency_of_mass_number_concentration_of_rain_wrt_moist_air_and_condensed_water
-  long_name = microphysics tendency of mass number concentration of rain wrt moist air and condensed water
+  standard_name = microphysics_tendency_of_mass_number_concentration_of_snow_wrt_moist_air_and_condensed_water
+  long_name = microphysics tendency of mass number concentration of snow wrt moist air and condensed water
   units = kg-1 s-1
   dimensions = (microphysics_horizontal_loop_extent, microphysics_vertical_layer_dimension)
   type = real
@@ -1036,7 +1039,7 @@
   type = real
   kind = kind_phys
   intent = out
-[micro_reff_graupel_out]
+[micro_reff_grau_out]
   standard_name = microphysics_effective_radius_of_stratiform_graupel_particle
   long_name = microphysics effective radius of stratiform graupel particle
   units = um
@@ -1212,7 +1215,7 @@
   type = real
   kind = kind_phys
   intent = out
-[numgraup_vol_out]
+[micro_numgraup_vol_out]
   standard_name = microphysics_graupel_number_concentration_of_new_state
   long_name = microphysics graupel number concentration of new state
   units = m-3
@@ -1220,7 +1223,7 @@
   type = real
   kind = kind_phys
   intent = out
-[micro_diam_graupel_out]
+[micro_diam_graup_out]
   standard_name = microphysics_average_diameter_of_stratiform_graupel_particle
   long_name = microphysics average diameter of stratiform graupel particle
   units = m

@@ -146,7 +146,11 @@ contains
   !In-cloud snow number concentration when micro_mg_nscons is True  (m-3):
   real(pumas_r8) :: micro_mg_nsnst
 
-  !Initialize error code:
+  !Local PUMAS error message
+  character(len=128) :: pumas_errstring
+
+  !Initialize error message and error code:
+  errmsg  = ''
   errcode = 0
 
   !Convert real-type input fields into appropriate kind:
@@ -189,11 +193,12 @@ contains
            micro_mg_ninst, micro_mg_ngcons, micro_mg_ngnst, &
            micro_mg_nrcons, micro_mg_nrnst, micro_mg_nscons, micro_mg_nsnst, &
            stochastic_emulated_filename_quantile, stochastic_emulated_filename_input_scale, &
-           stochastic_emulated_filename_output_scale, iulog, errmsg)
+           stochastic_emulated_filename_output_scale, iulog, pumas_errstring)
 
   !Set error code to non-zero value if PUMAS returns an error message:
-  if (trim(errmsg) /= "") then
+  if (trim(pumas_errstring) /= "") then
     errcode = 1
+    errmsg = trim(pumas_errstring)
   end if
 
   end subroutine micro_pumas_ccpp_init
@@ -203,11 +208,11 @@ contains
   subroutine micro_pumas_ccpp_run(micro_ncol, micro_nlev, micro_nlevp1,             &
                                   micro_dust_nbins, micro_timestep_in,              &
                                   micro_airT_in, micro_airq_in, micro_cldliq_in,    &
-                                  micro_cldice_in, micro_numliq_in,                 &
-                                  micro_numice_in, micro_rainliq_in,                &
-                                  micro_snowice_in, micro_numrain_in,               &
-                                  micro_graupice_in, micro_numgraup_in,             &
-                                  micro_numsnow_in, micro_relvar_in,                &
+                                  micro_cldice_in,   micro_numliq_in,               &
+                                  micro_numice_in,   micro_rainliq_in,              &
+                                  micro_snowice_in,  micro_numrain_in,              &
+                                  micro_numsnow_in,  micro_graupice_in,             &
+                                  micro_numgraup_in, micro_relvar_in,               &
                                   micro_accre_enhan_in, micro_pmid_in,              &
                                   micro_pdel_in, micro_pint_in,                     &
                                   micro_strat_cldfrc_in, micro_strat_liq_cldfrc_in, &
@@ -309,7 +314,7 @@ contains
     !microphysics air pressure thickness (Pa)
     real(kind_phys), intent(in) :: micro_pdel_in(micro_ncol, micro_nlev)
     !microphysics air pressure at interfaces (Pa)
-    real(kind_phys), intent(in) :: micro_pint_in(micro_ncol, micro_nlev)
+    real(kind_phys), intent(in) :: micro_pint_in(micro_ncol, micro_nlevp1)
     !microphysics stratiform cloud area fraction (fraction)
     real(kind_phys), intent(in) :: micro_strat_cldfrc_in(micro_ncol, micro_nlev)
     !microphysics stratiform cloud liquid area fraction (fraction)
@@ -506,7 +511,7 @@ contains
     real(pumas_r8) :: accre_enhan(micro_ncol, micro_nlev)
     real(pumas_r8) :: pmid(micro_ncol, micro_nlev)
     real(pumas_r8) :: pdel(micro_ncol, micro_nlev)
-    real(pumas_r8) :: pint(micro_ncol, micro_nlev)
+    real(pumas_r8) :: pint(micro_ncol, micro_nlevp1)
     real(pumas_r8) :: strat_cldfrc(micro_ncol, micro_nlev)
     real(pumas_r8) :: strat_liq_cldfrc(micro_ncol, micro_nlev)
     real(pumas_r8) :: strat_ice_cldfrc(micro_ncol, micro_nlev)
@@ -592,6 +597,13 @@ contains
     real(pumas_r8) :: frac_cldliq_tend(micro_ncol, micro_nlev)
     real(pumas_r8) :: micro_rain_evap(micro_ncol, micro_nlev)
 
+    !Local PUMAS error message
+    character(len=128) :: pumas_errstring
+
+    !Initialize error message and error code:
+    errmsg  = ''
+    errcode = 0
+
     !Convert all CCPP input real variables to PUMAS precision:
     micro_timestep        = real(micro_timestep_in, pumas_r8)
     airT                  = real(micro_airT_in, pumas_r8)
@@ -625,9 +637,6 @@ contains
     frzimm                = real(micro_frzimm_in, pumas_r8)
     frzcnt                = real(micro_frzcnt_in, pumas_r8)
     frzdep                = real(micro_frzdep_in, pumas_r8)
-
-    !Initialize error code:
-    errcode = 0
 
     !Call main PUMAS run routine:
     !---------------------------
@@ -678,7 +687,7 @@ contains
         graupice_out,           numgraup_vol_out, diam_graup_out,    &
         freq_graup,             freq_snow,        freq_rain,         &
         frac_ice,               frac_cldliq_tend,                    &
-        micro_proc_rates_inout, errmsg,                              &
+        micro_proc_rates_inout, pumas_errstring,                     &
         snowice_tend_external,  numsnow_tend_external,               &
         effi_external,          micro_rain_evap,                     &
         frzimm,                 frzcnt,           frzdep           )
@@ -744,7 +753,7 @@ contains
      micro_rainliq_out              = real(rainliq_out, kind_phys)
      micro_snowice_out              = real(snowice_out, kind_phys)
      micro_numrain_vol_out          = real(numrain_vol_out, kind_phys)
-     micro_numsnow_vol_in_prec_out  = real(numsnow_vol_out, kind_phys)
+     micro_numsnow_vol_out          = real(numsnow_vol_out, kind_phys)
      micro_diam_rain_out            = real(diam_rain_out, kind_phys)
      micro_diam_snow_out            = real(diam_snow_out, kind_phys)
      micro_graupice_out             = real(graupice_out, kind_phys)
@@ -760,6 +769,7 @@ contains
     !Set error code to non-zero value if PUMAS returns an error message:
     if (trim(errmsg) /= "") then
       errcode = 1
+      errmsg  = trim(pumas_errstring)
     end if
 
   end subroutine micro_pumas_ccpp_run
