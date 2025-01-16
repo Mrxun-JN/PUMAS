@@ -1,5 +1,5 @@
 !Define Fortran kinds for use specifically
-!wihthin PUMAS.  This allows PUMAS to control
+!within PUMAS.  This allows PUMAS to control
 !the precision in its internal routines without
 !having to depend on a specific host model
 !implemention.
