@@ -1301,6 +1301,6 @@
   dimensions = ()
   type = integer
   intent = out
-####################
-#End of metdata file
-####################
+#####################
+#End of metadata file
+#####################

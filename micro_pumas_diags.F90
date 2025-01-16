@@ -6,9 +6,11 @@ module micro_pumas_diags
 
 use pumas_kinds,   only: r8=>kind_r8
 
+!> \section arg_table_proc_rates_type  Argument Table
+!! \htmlinclude proc_rates_type.html
   type, public :: proc_rates_type
 
-    real(r8), allocatable :: prodsnow(:,:)     ! production of snow (1/s)
+    real(r8), allocatable :: prodsnow(:,:)     ! production of snow (kg/kg/s)
     real(r8), allocatable :: evapsnow(:,:)     ! sublimation rate of snow (1/s)
     real(r8), allocatable :: qcsevap(:,:)      ! cloud water evaporation due to sedimentation (1/s)
     real(r8), allocatable :: qisevap(:,:)      ! cloud ice sublimation due to sublimation (1/s)
