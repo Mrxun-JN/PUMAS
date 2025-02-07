@@ -603,7 +603,7 @@
   standard_name = microphysics_air_pressure_at_interfaces
   long_name = microphysics air pressure at interfaces
   units = Pa
-  dimensions = (microphysics_horizontal_loop_extent, microphysics_vertical_layer_dimension)
+  dimensions = (microphysics_horizontal_loop_extent, microphysics_vertical_interface_dimension)
   type = real
   kind = kind_phys
   intent = in
