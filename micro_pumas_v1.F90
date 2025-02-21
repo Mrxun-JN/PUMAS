@@ -1119,17 +1119,6 @@ subroutine micro_pumas_tend ( &
      precip_frac_method = MG_PRECIP_FRAC_OVERLAP
   endif
 
-  ! Initialize local variables to avoid floating point errors:
-  n0i(:,:)     = 0._r8
-  lami(:,:)    = 0._r8
-  n0s(:,:)     = 0._r8
-  lams(:,:)    = 0._r8
-  ninstgm(:,:) = 0._r8
-  psacws(:,:)  = 0._r8
-  pracs(:,:)   = 0._r8
-  bergs(:,:)   = 0._r8
-  prds(:,:)    = 0._r8
-
   !......................................................................
   !       graupel/hail density set (Hail = 400, Graupel = 500 from M2005)
   bgtmp=0._r8
@@ -1477,6 +1466,15 @@ subroutine micro_pumas_tend ( &
         nprc1(i,k)              = 0._r8
         pra(i,k)                = 0._r8
         npra(i,k)               = 0._r8
+        n0i(i,k)                = 0._r8
+        lami(i,k)               = 0._r8
+        n0s(i,k)                = 0._r8
+        lams(i,k)               = 0._r8
+        ninstgm(i,k)            = 0._r8
+        psacws(i,k)             = 0._r8
+        pracs(i,k)              = 0._r8
+        bergs(i,k)              = 0._r8
+        prds(i,k)               = 0._r8
      end do
   end do
   !$acc end parallel
