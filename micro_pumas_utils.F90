@@ -87,7 +87,6 @@ public :: &
      init_lookup_table, &      !! mg4
      avg_diameter_vec
 
-! 8 byte real and integer
 integer, parameter, public :: VLENS = 128  ! vector length of a GPU compute kernel
 
 public :: MGHydrometeorProps

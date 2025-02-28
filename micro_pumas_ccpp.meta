@@ -76,8 +76,8 @@
   intent = in
 [rhmini]
   standard_name = relative_humidity_threshold_for_ice_nucleation
-  long_name = relative humidity threshold parameter for nucleating ice for MG microphysics
-  units = frac
+  long_name = relative humidity threshold parameter for nucleating ice for PUMAS microphysics
+  units = fraction
   dimensions = ()
   type = real
   kind = kind_phys
@@ -91,154 +91,154 @@
   intent = in
 [micro_mg_do_hail]
   standard_name = flag_for_hail_instead_of_graupel
-  long_name = flag for hail for MG microphysics (graupel possible if false)
+  long_name = flag for hail for PUMAS microphysics (graupel possible if false)
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_do_graupel]
   standard_name = flag_for_graupel_instead_of_hail
-  long_name = flag for graupel for MG microphysics (hail possible if false)
+  long_name = flag for graupel for PUMAS microphysics (hail possible if false)
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [microp_uniform]
   standard_name = flag_for_uniform_subcolumns
-  long_name = flag for uniform subcolumns for MG microphysics
+  long_name = flag for uniform subcolumns for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [do_cldice]
   standard_name = flag_for_cloud_ice_processes
-  long_name = flag for cloud ice processes for MG microphysics
+  long_name = flag for cloud ice processes for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [use_hetfrz_classnuc]
   standard_name = flag_for_heterogeneous_ice_nucleation
-  long_name = flag for heterogeneous freezing for MG microphysics
+  long_name = flag for heterogeneous freezing for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [remove_supersat]
   standard_name = flag_for_allowance_of_supersaturation_after_sedimentation
-  long_name = allow supersaturation after sedimentation for MG microphysics
+  long_name = allow supersaturation after sedimentation for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_evap_sed_off]
   standard_name = flag_for_no_evaporation_of_precipitation
-  long_name = true for sedimenting condensate does not evaporate for MG microphysics
+  long_name = true for sedimenting condensate does not evaporate for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_icenuc_rh_off]
   standard_name = flag_to_remove_threshold_for_ice_nucleation
-  long_name = If .true., remove RH threshold from ice nucelation calculation for MG microphysics
+  long_name = If .true., remove RH threshold from ice nucelation calculation for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_icenuc_use_meyers]
   standard_name = flag_to_use_meyers_ice_nucleation
-  long_name = use temperature dependent ice nucleation from Meyers 1992 for MG microphysics
+  long_name = use temperature dependent ice nucleation from Meyers 1992 for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_evap_scl_ifs]
   standard_name = flag_to_scale_evaporation_like_ifs
-  long_name = if True Apply 0.3 scaling factor to evaporation of precipitation for MG microphysics
+  long_name = if True Apply 0.3 scaling factor to evaporation of precipitation for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_evap_rhthrsh_ifs]
   standard_name = flag_use_ifs_evaporation_threshold
-  long_name = Do not evaporate precipitation until RH below 90% as done in the for MG microphysics
+  long_name = Do not evaporate precipitation until RH below 90% as done in the for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_rainfreeze_ifs]
   standard_name = flag_to_freeze_rain_at_0C
-  long_name = Freeze rain at 0C for MG microphysics
+  long_name = Freeze rain at 0C for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_ifs_sed]
   standard_name = flag_for_constant_sedimentation_fall_speed
-  long_name = Use constant sedimentation of all species for MG microphysics
+  long_name = Use constant sedimentation of all species for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_precip_fall_corr]
   standard_name = flag_for_fall_speed_correction
-  long_name = ensure non-zero precipitation fallspeed for MG microphysics
+  long_name = ensure non-zero precipitation fallspeed for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_accre_sees_auto]
   standard_name = flag_for_accretion_sees_autoconverted_condensate
-  long_name = KK200 accretion sees newely formed rain for MG microphysics
+  long_name = KK200 accretion sees newely formed rain for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_implicit_fall]
   standard_name = do_implicit_fall_speed_calc
-  long_name = use implicit calculation for fall speed for MG microphysics
+  long_name = use implicit calculation for fall speed for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_nccons]
   standard_name = flag_for_prescribed_cloud_droplet_number_concentration
-  long_name = flag for constant droplet concentration for MG microphysics
+  long_name = flag for constant droplet concentration for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_nicons]
   standard_name = flag_for_prescribed_cloud_ice_number_concentration
-  long_name = flag for constant ice concentration for MG microphysics
+  long_name = flag for constant ice concentration for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_ngcons]
   standard_name = flag_for_prescribed_graupel_number_concentration
-  long_name = flag for constant graupel concentration for MG microphysics
+  long_name = flag for constant graupel concentration for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_nrcons]
   standard_name = flag_for_prescribed_rain_number_concentration
-  long_name = flag for constant rain concentration for MG microphysics
+  long_name = flag for constant rain concentration for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_nscons]
   standard_name = flag_for_prescribed_snow_number_concentration
-  long_name = flag for constant snow concentration for MG microphysics
+  long_name = flag for constant snow concentration for PUMAS microphysics
   units = flag
   dimensions = ()
   type = logical
   intent = in
 [micro_mg_precip_frac_method]
   standard_name = control_for_precipitation_area_fraction_method
-  long_name = type of precip fraction method for MG microphysics (in_cloud or max_overlap)
+  long_name = type of precip fraction method for PUMAS microphysics (in_cloud or max_overlap)
   units = none
   dimensions = ()
   type = character
@@ -278,31 +278,31 @@
   intent = in
 [micro_mg_dcs_in]
   standard_name = autoconverion_to_snow_size_threshold
-  long_name = autoconversion size threshold for cloud ice to snow for MG microphysics
-  units = um
+  long_name = autoconversion size threshold for cloud ice to snow for PUMAS microphysics
+  units = m
   dimensions = ()
   type = real
   kind = kind_phys
   intent = in
 [micro_mg_berg_eff_factor_in]
   standard_name = bergeron_findeisen_process_efficiency_factor
-  long_name = bergeron efficiency factor for MG microphysics
-  units = frac
+  long_name = bergeron efficiency factor for PUMAS microphysics
+  units = 1
   dimensions = ()
   type = real
   kind = kind_phys
   intent = in
 [micro_mg_accre_enhan_fact_in]
   standard_name = accretion_enhancement_factor
-  long_name = KK2000 accretion enhancement factor for MG microphysics
-  units = none
+  long_name = KK2000 accretion enhancement factor for PUMAS microphysics
+  units = 1
   dimensions = ()
   type = real
   kind = kind_phys
   intent = in
 [micro_mg_autocon_fact_in]
   standard_name = autconversion_enhancement_factor
-  long_name = KK2000 autonconverion enhancement factor for MG microphysics
+  long_name = KK2000 autonconverion enhancement factor for PUMAS microphysics
   units = none
   dimensions = ()
   type = real
@@ -310,7 +310,7 @@
   intent = in
 [micro_mg_autocon_nd_exp_in]
   standard_name = autconversion_nd_exponent
-  long_name = KK2000 autonconverion nd exponent in MG microphysics
+  long_name = KK2000 autonconverion nd exponent in PUMAS microphysics
   units = none
   dimensions = ()
   type = real
@@ -318,7 +318,7 @@
   intent = in
 [micro_mg_autocon_lwp_exp_in]
   standard_name = autconversion_lwp_exponent
-  long_name = KK2000 autonconverion lwp (qc) exponent in MG microphysics
+  long_name = KK2000 autonconverion lwp (qc) exponent in PUMAS microphysics
   units = none
   dimensions = ()
   type = real
@@ -326,7 +326,7 @@
   intent = in
 [micro_mg_homog_size_in]
   standard_name = homogeneous_freezing_radius
-  long_name = radius of drops homogeneously frozen in MG microphysics
+  long_name = radius of drops homogeneously frozen in PUMAS microphysics
   units = m
   dimensions = ()
   type = real
@@ -334,7 +334,7 @@
   intent = in
 [micro_mg_vtrmi_factor_in]
   standard_name = scaling_factor_for_ice_fall_speed
-  long_name = scaling factor for cloud ice fall speed in MG microphysics
+  long_name = scaling factor for cloud ice fall speed in PUMAS microphysics
   units = 1
   dimensions = ()
   type = real
@@ -342,7 +342,7 @@
   intent = in
 [micro_mg_vtrms_factor_in]
   standard_name = scaling_factor_for_snow_fall_speed
-  long_name = scaling factor for snow fall speed in MG microphysics
+  long_name = scaling factor for snow fall speed in PUMAS microphysics
   units = 1
   dimensions = ()
   type = real
@@ -350,7 +350,7 @@
   intent = in
 [micro_mg_effi_factor_in]
   standard_name = scaling_factor_for_ice_in_radiation
-  long_name = scaling factor for ice effective radition used by radiation
+  long_name = unitless scaling factor for ice effective radius as seen by radiation
   units = 1
   dimensions = ()
   type = real
@@ -358,7 +358,7 @@
   intent = in
 [micro_mg_iaccr_factor_in]
   standard_name = scaling_factor_for_ice_accretion
-  long_name = scaling factor for ice accretion in MG microphysics
+  long_name = scaling factor for ice accretion in PUMAS microphysics
   units = 1
   dimensions = ()
   type = real
@@ -366,7 +366,7 @@
   intent = in
 [micro_mg_max_nicons_in]
   standard_name = maximum_ice_number_concentration
-  long_name = maximum allowed ice number concentration for MG microphysics
+  long_name = maximum allowed ice number concentration for PUMAS microphysics
   units = m-3
   dimensions = ()
   type = real
@@ -374,7 +374,7 @@
   intent = in
 [micro_mg_ncnst_in]
   standard_name = prescribed_cloud_droplet_number_concentration
-  long_name = droplet concentration constant for MG microphysics
+  long_name = In-cloud liquid droplet number concentration when number held constant
   units = m-3
   dimensions = ()
   type = real
@@ -382,7 +382,7 @@
   intent = in
 [micro_mg_ninst_in]
   standard_name = prescribed_cloud_ice_number_concentration
-  long_name = ice concentration constant for MG microphysics
+  long_name = In-cloud ice number concentration when ice number held constant
   units = m-3
   dimensions = ()
   type = real
@@ -390,7 +390,7 @@
   intent = in
 [micro_mg_ngnst_in]
   standard_name = prescribed_graupel_number_concentration
-  long_name = graupel concentration constant for MG microphysics
+  long_name = In-cloud graupel number concentration when number held constant
   units = m-3
   dimensions = ()
   type = real
@@ -398,7 +398,7 @@
   intent = in
 [micro_mg_nrnst_in]
   standard_name = prescribed_rain_number_concentration
-  long_name = rain concentration constant for MG microphysics
+  long_name = In-cloud rain number concentration when number held constant
   units = m-3
   dimensions = ()
   type = real
@@ -406,7 +406,7 @@
   intent = in
 [micro_mg_nsnst_in]
   standard_name = prescribed_snow_number_concentration
-  long_name = snow concentration constant for MG microphysics
+  long_name = In-cloud snow number concentration when number held constant
   units = m-3
   dimensions = ()
   type = real
@@ -593,7 +593,7 @@
   intent = in
 [micro_pdel_in]
   standard_name = microphysics_air_pressure_thickness
-  long_name = microphysics air pressure thickness
+  long_name = microphysics air pressure layer thickness
   units = Pa
   dimensions = (microphysics_horizontal_loop_extent, microphysics_vertical_layer_dimension)
   type = real
@@ -865,7 +865,7 @@
   intent = out
 [micro_prect_out]
   standard_name = microphysics_lwe_large_scale_precipitation_rate_at_surface
-  long_name = microphysics LWE large scale precipitation rate at surface
+  long_name = microphysics total liquid water equivalent large scale precipitation rate at surface
   units = m s-1
   dimensions = (microphysics_horizontal_loop_extent)
   type = real
