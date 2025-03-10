@@ -1,6 +1,6 @@
 module tau_neural_net_quantile
 
-    use shr_kind_mod,   only: r8=>shr_kind_r8
+    use pumas_kinds,       only : r8=>kind_r8
 
     use module_neural_net, only : Dense, init_neural_net, load_quantile_scale_values
     use module_neural_net, only : quantile_transform, quantile_inv_transform, neural_net_predict
@@ -65,10 +65,10 @@ contains
         real(r8), dimension(mgncol), intent(in) :: qc, qr, nc, nr, rho, lcldm, precip_frac
         real(r8), intent(in) :: q_small
         real(r8), dimension(mgncol), intent(out) :: qc_tend, qr_tend, nc_tend, nr_tend
-        integer(i8) :: i, j
+        integer(i8) :: i
         real(r8), dimension(batch_size, num_inputs) :: nn_inputs, nn_quantile_inputs
         real(r8), dimension(batch_size, num_outputs) :: nn_quantile_outputs, nn_outputs
-        real(r8), parameter :: dt = 1800.0
+        real(r8), parameter :: dt = 1800.0_r8
         do i = 1, mgncol
             if (qc(i) >= q_small) then
                 nn_inputs(1, 1) = qc(i)
